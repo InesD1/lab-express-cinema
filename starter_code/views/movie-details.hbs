@@ -1,0 +1,17 @@
+<p><a href="/movies">Go back</a></p>
+<p><a href="/movie/create">Add a movie</a></p>
+
+<h2>{{movie.title}}</h2>
+<img src="{{movie.image}}" alt="movie poster"/>
+<h3>Director: {{movie.director}}</h3>
+    {{#if movie.stars}}
+        <h4>Stars</h4>
+        <ul class="stars_list">
+            {{#each movie.stars}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+<p>{{movie.description}}</p>
+<p>{{movie.showtimes}}</p>
+<a href="/movie/delete/{{movie.id}}">Delete movie</a>

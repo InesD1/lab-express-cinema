@@ -10,12 +10,11 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
-mongoose
-  .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/moviesApp', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
-  .catch(err => {
+  .catch(err => {a
     console.error('Error connecting to mongo', err)
   });
 
@@ -49,10 +48,13 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
 const index = require('./routes/index');
 app.use('/', index);
-
+const movies = require('./routes/movies');
+app.use('/', movies);
+const movie = require('./routes/singleMovie');
+app.use('/', movie);
 
 module.exports = app;
+
+app.listen(3000, ()=>{console.log(`App is listening on port 3000`)});
